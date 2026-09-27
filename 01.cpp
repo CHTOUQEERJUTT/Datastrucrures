@@ -39,6 +39,79 @@ void displayLinkedList(Node* head) {
     cout << "nullptr" << endl;
 }
 
+Node* mergedSortedLists(Node* list1,Node* list2){
+    Node* dummy=new Node(0);
+    Node* tail = dummy;
+
+    while (list1!=nullptr && list2!=nullptr)
+    {
+        if (list1->data < list2->data)
+        {
+            tail->next=list1;
+            list1=list1->next;
+        }
+        else{
+            tail->next=list2;
+            list2=list2->next;
+        }
+        tail=tail->next;
+
+        if (list1!=nullptr)
+        {
+            tail->next=list1;
+        }else{
+            tail->next=list2;
+        }
+        return dummy->next;
+        
+        
+        
+    }
+    
+    
+
+
+}
+
+Node* detectCycle(Node* head){
+    Node* slow = head;
+    Node* fast = head;
+
+    bool isCycle = false;
+
+
+    while (fast!=nullptr && fast->next!=nullptr)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+        if (slow==fast)
+        {
+            isCycle=true;
+            break;
+        }
+        
+    }
+    if (!isCycle)
+    {
+        return nullptr;
+    }
+
+    slow=head;
+    Node* prev = nullptr;
+    while (slow!=fast)
+    {
+        slow=slow->next;
+        prev=fast;
+        fast=fast->next;
+
+    }
+    prev->next=nullptr;
+    return slow;
+    
+    
+    
+}
+
 int main() {
     Node* head = new Node(0);
     head->next = new Node(1);
