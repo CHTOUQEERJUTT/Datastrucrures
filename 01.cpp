@@ -112,6 +112,20 @@ Node* detectCycle(Node* head){
     
 }
 
+Node* getIntersectionNode(Node* headA,Node* headB){
+    Node* a = headA;
+    Node* b = headB;
+
+    while (a!=b)
+    {
+        a=a?a->next:headB;
+        b=b?b->next:headA;
+
+    }
+    return a;
+    
+}
+
 int main() {
     Node* head = new Node(0);
     head->next = new Node(1);
